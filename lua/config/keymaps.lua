@@ -14,3 +14,4 @@ vim.keymap.set("n", "<Leader><Down>", "<C-j>", { desc = "Go to Lower Window", re
 
 vim.keymap.set("n", "<Leader>o", "<Leader>cs", { desc = "Outlines", remap = true })
 vim.keymap.set("n", "gs", ":ClangdSwitchSourceHeader<cr>", { desc = "switch between header/source", remap = true })
+vim.keymap.set("n", "gh", ":ClangdTypeHierarchy<cr>", { desc = "show type hierarchy", remap = true })

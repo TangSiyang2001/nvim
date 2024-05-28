@@ -10,11 +10,11 @@ return {
       {
         "rcarriga/nvim-dap-ui",
         dependencies = { "nvim-neotest/nvim-nio" },
-      -- stylua: ignore
-      keys = {
-        { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
-        { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
-      },
+        -- stylua: ignore
+        keys = {
+          { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
+          { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
+        },
         opts = {},
         config = function(_, opts)
           local dap = require("dap")
@@ -29,6 +29,47 @@ return {
           dap.listeners.before.event_exited["dapui_config"] = function()
             dapui.close({})
           end
+          vim.api.nvim_set_hl(0, "DapBreakpoint", { ctermbg = 0 })
+          vim.api.nvim_set_hl(0, "DapLogPoint", { ctermbg = 0 })
+          vim.api.nvim_set_hl(0, "DapStopped", { ctermbg = 0 })
+          local dap_breakpoint = {
+            error = {
+              text = "🔴",
+              texthl = "DapBreakpoint",
+              linehl = "DapBreakpoint",
+              numhl = "DapBreakpoint",
+            },
+            condition = {
+              text = "🟰",
+              texthl = "DapBreakpoint",
+              linehl = "DapBreakpoint",
+              numhl = "DapBreakpoint",
+            },
+            rejected = {
+              text = "🚫",
+              texthl = "DapBreakpoint",
+              linehl = "DapBreakpoint",
+              numhl = "DapBreakpoint",
+            },
+            logpoint = {
+              text = "⚠️",
+              texthl = "DapLogPoint",
+              linehl = "DapLogPoint",
+              numhl = "DapLogPoint",
+            },
+            stoppoint = {
+              text = "➡️",
+              texthl = "DapStopped",
+              linehl = "DapStopped",
+              numhl = "DapStopped",
+            },
+          }
+          vim.fn.sign_define("DapBreakpoint", dap_breakpoint.error)
+          vim.fn.sign_define("DapBreakpointCondition", dap_breakpoint.condition)
+          vim.fn.sign_define("DapBreakpointRejected", dap_breakpoint.rejected)
+          vim.fn.sign_define("DapLogPoint", dap_breakpoint.logpoint)
+          vim.fn.sign_define("DapStopped", dap_breakpoint.stoppoint)
+
           -- return {
           --   enabled = true, -- enable this plugin (the default)
           --   enabled_commands = true, -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
