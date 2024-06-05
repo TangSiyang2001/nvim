@@ -163,7 +163,7 @@ return {
         port = "${port}",
         executable = {
           -- whereis code lldb
-          command = "/Users/tsy/.local/share/nvim/mason/bin/codelldb",
+          command = "codelldb",
           args = { "--port", "${port}" },
         },
       }
