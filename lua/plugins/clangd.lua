@@ -5,7 +5,7 @@ local os_type = os.getenv("HOMEBREW_PREFIX") or ""
 local clangd_path
 if os_type == "/opt/homebrew" then
   -- macOS下使用Homebrew的路径
-  clangd_path = "/opt/homebrew/opt/llvm/bin/clangd"
+  clangd_path = "/opt/homebrew/opt/llvm@17/bin/clangd"
 else
   -- Linux下使用其他路径
   -- 请将"/path/to/linux/clangd"替换为实际的Linux clangd路径
@@ -46,6 +46,10 @@ return {
             "--completion-style=detailed",
             "--function-arg-placeholders",
             "--fallback-style=llvm",
+            "--log=verbose",
+            "--all-scopes-completion",
+            "--cross-file-rename",
+            "--header-insertion-decorators",
           },
           init_options = {
             usePlaceholders = true,
