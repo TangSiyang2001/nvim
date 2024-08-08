@@ -9,7 +9,7 @@ if os_type == "/opt/homebrew" then
 else
   -- Linux下使用其他路径
   -- 请将"/path/to/linux/clangd"替换为实际的Linux clangd路径
-  clangd_path = "/usr/bin/clangd"
+  clangd_path = "/mnt/disk1/tangsiyang/ldb_toolchain/bin/clangd"
 end
 
 return {
