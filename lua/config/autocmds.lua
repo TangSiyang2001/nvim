@@ -8,6 +8,8 @@
 --   nested = true,
 -- })
 
+vim.api.nvim_create_autocmd({ "BufLeave" }, { command = "silent! wall", nested = true })
+
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
     vim.highlight.on_yank()
