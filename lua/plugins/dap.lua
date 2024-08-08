@@ -188,7 +188,9 @@ return {
         },
       }
 
-      dap.set_exception_breakpoints({})
+      dap.listeners.after.event_initialized["set_auto_break_point"] = function()
+        dap.defaults.cpp.exception_breakpoints = {}
+      end
     end,
 
     -- config = function()
