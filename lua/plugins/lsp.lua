@@ -38,6 +38,13 @@ return {
           capabilities = {
             offsetEncoding = { "utf-16" },
           },
+          filetypes = {
+            "c",
+            "cpp",
+            "objc",
+            "objcpp",
+            "cuda",
+          },
           cmd = {
             clangd_path,
             "--background-index",
@@ -50,6 +57,8 @@ return {
             "--all-scopes-completion",
             "--cross-file-rename",
             "--header-insertion-decorators",
+            "-j=5",
+            "--pch-storage=disk",
           },
           init_options = {
             usePlaceholders = true,
@@ -57,6 +66,7 @@ return {
             clangdFileStatus = true,
           },
         },
+        protols = {},
       },
       setup = {
         clangd = function(_, opts)
